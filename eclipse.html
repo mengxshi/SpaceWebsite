@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Solar Eclipse Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow-y: auto;
+    }
+
+    .background-container {
+      position: relative;
+      background-image: url('eclipse.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      background-position: center; 
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 5%; 
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    h1,
+    p {
+      color: orange;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 36px;
+      animation: slideInTop 2s forwards;
+    }
+
+    p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      margin-top: 10px;
+      font-weight: bold;
+      animation: slideInTop 2s forwards;
+    }
+
+    #top-left-link,
+    #top-left-link:hover {
+      color: white; 
+      font-family: 'Orbitron', sans-serif; 
+      text-decoration: none;
+      transition: color 0.3s ease;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 2; 
+      opacity: 0;
+      animation: slideFadeInBottom 2s forwards;
+    }
+
+    #top-left-link:hover {
+      background-color: rgba(255, 255, 255, 0.2); 
+    }
+
+    #countdown {
+      font-family: 'Orbitron', sans-serif;
+      color: orange;
+      font-size: 4vw;
+      margin-top: 400px !important; 
+      animation: slideInTop 2s forwards;
+    }
+
+    #image-title {
+      font-family: 'Orbitron', sans-serif;
+      color: black;
+      font-size: 2.5vw;
+      font-weight: bold;
+      margin-top: 5vw;
+      animation: slideInTop 2s forwards;
+    }
+
+    #solar-info {
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      font-size: 2vw;
+      margin-top: 2vw;
+      text-align: left;
+      animation: slideInTop 2s forwards;
+    }
+
+    #scroll-gif {
+      position: absolute;
+      left: -5px; 
+      top: calc(650px + 5vw); 
+      width: 10vw; 
+      opacity: 0;
+      animation: fadeIn 1s forwards 2s;
+      display: block; 
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInTop {
+      0% {
+        transform: translateY(-50px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideFadeInBottom {
+      0% {
+        transform: translateY(50%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInGif {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media only screen and (min-width: 600px) {
+      #countdown {
+        font-size: 40px;
+        margin-top: 300px;
+      }
+
+      #image-title {
+        font-size: 30px;
+        margin-top: 400px;
+      }
+
+      #solar-info {
+        font-size: 10px;
+        margin-top: 10px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+</head>
+
+<body>
+  <a href="home.html" id="top-left-link">Return to Home Page</a>
+
+  <div class="background-container">
+    <div class="container">
+      <h1>Solar Eclipse Countdown</h1>
+      <p>Counting down to the next solar eclipse in the United States: </p>
+      <p id="countdown"></p>
+
+      <h1 id="image-title">What is a Solar Eclipse?</h1>
+
+      <div id="solar-info">
+        <p>The solar eclipse is a natural event that occurs when the Moon passes between the Sun and the Earth. During a solar eclipse, the Sun, Moon, and Earth are aligned in a straight or nearly straight line.</p>
+        <p>This alignment can occur only during the new moon phase when the Moon is positioned between the Earth and the Sun.</p>
+        <p>There are different types of solar eclipses, including total, partial, and annular eclipses, each with its own unique characteristics.</p>
+        <p>The next solar eclipse visible in the United States is expected to occur on April 8th, 2024.</p>
+      </div>
+    </div>
+  </div>
+
+  <img src="scroll.gif" id="scroll-gif" alt="Scroll GIF">
+
+  <!-- JavaScript for the Solar Eclipse Countdown and Scroll GIF -->
+  <script>
+    // Set the date of the solar eclipse (April 8th, 2024)
+    const eclipseDate = new Date('April 8, 2024 00:00:00 GMT-0400');
+
+    // Function to update the countdown
+    function updateCountdown() {
+      const currentDate = new Date();
+      const timeDifference = eclipseDate - currentDate;
+
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      // Display the countdown
+      document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Function to handle scroll event
+    function handleScroll() {
+      var scrollGif = document.getElementById('scroll-gif');
+      var scrollPosition = window.scrollY || window.pageYOffset;
+
+      if (scrollPosition > 200) {
+        scrollGif.style.display = 'none';
+      } else {
+        scrollGif.style.display = 'block';
+      }
+    }
+
+    // Add a scroll event listener to the window
+    window.addEventListener('scroll', handleScroll);
+
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+
+    // Initial update
+    updateCountdown();
+  </script>
+</body>
+
+</html>

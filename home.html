@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>A Space for Space</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('plain.jpg');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background-image 1s ease;
+        }
+
+        .milky-background {
+            background-image: url('milky.jpg') !important;
+        }
+
+        #top-left-link,
+        #top-middle-link,
+        #top-right-link,
+        #slide-fade-text,
+        #subtext,
+        #astronomy-photo-container,
+        #visit-counter {
+            font-family: 'Orbitron', 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        #top-left-link,
+        #top-middle-link,
+        #top-right-link {
+            position: absolute;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #top-left-link {
+            top: 10px;
+            left: 10px;
+        }
+
+        #top-middle-link {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #top-right-link {
+            top: 10px;
+            right: 10px;
+        }
+
+        #top-left-link:hover,
+        #top-middle-link:hover,
+        #top-right-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        #slide-fade-text,
+        #subtext {
+            opacity: 0;
+            font-size: 6vw;
+            margin-top: 10vw;
+            animation: slideFadeIn 2s forwards;
+        }
+
+        #slide-fade-text {
+            font-size: 8vw;
+        }
+
+        #subtext {
+            font-size: 2vw;
+            margin-top: 5vw;
+        }
+
+        #astronomy-photo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            max-width: 90%;
+            margin-top: auto;
+            margin-bottom: 2vw;
+        }
+
+        #astronomy-photo {
+            max-width: 100%;
+            max-height: 50vh;
+            opacity: 0;
+            animation: slideFadeIn 2s forwards;
+        }
+
+        .astronomy-title {
+            margin-top: 1vw;
+            font-size: 1.5vw;
+            opacity: 0;
+            animation: slideFadeIn 2s forwards;
+        }
+
+        #visit-counter {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-family: 'Orbitron', 'Arial', sans-serif;
+            opacity: 0;
+            animation: slideFadeIn 2s forwards;
+        }
+
+        @keyframes slideFadeIn {
+            0% {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media only screen and (min-width: 600px) {
+            #slide-fade-text,
+            #subtext {
+                font-size: 60px;
+                margin-top: 100px;
+            }
+
+            #slide-fade-text {
+                font-size: 80px;
+            }
+
+            #subtext {
+                font-size: 40px;
+                margin-top: 30px;
+            }
+
+            #astronomy-photo-container {
+                max-width: 70%;
+            }
+
+            .astronomy-title {
+                margin-top: 20px;
+                font-size: 24px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+</head>
+
+<body>
+    <a href="solarsystem.html" id="top-left-link">Let's Explore The Solar System</a>
+    <a href="iss.html" id="top-right-link">Spot the ISS</a>
+    <a href="eclipse.html" id="top-middle-link">Solar Eclipse Countdown</a>
+    <div id="slide-fade-text">A Space For Space</div>
+    <div id="subtext">Discover the Wonders Beyond</div>
+    <div id="astronomy-photo-container">
+        <div id="astronomy-photo"></div>
+        <div class="astronomy-title" id="astronomy-title"></div>
+    </div>
+    <!-- Removed the visit counter div -->
+    <script>
+        document.addEventListener("wheel", function (event) {
+            if (event.deltaY > 0) {
+                document.body.style.backgroundImage = "url('milky.jpg')";
+                document.body.classList.add('milky-background');
+            }
+        });
+
+        const apiKey = 'kxZQKrKojLCqRoUZid59bzmuL0Exxi5AXwdfqShM';
+
+        async function fetchPhotoOfTheDay() {
+            try {
+                const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`);
+                const data = await response.json();
+
+                const astronomyPhotoContainer = document.getElementById('astronomy-photo-container');
+                const astronomyPhoto = document.getElementById('astronomy-photo');
+                const astronomyTitle = document.getElementById('astronomy-title');
+
+                if (data.media_type === 'image' || data.media_type === 'video' || data.media_type === 'gif') {
+                    const mediaElement = data.media_type === 'image' ? document.createElement('img') :
+                        data.media_type === 'video' ? document.createElement('video') :
+                            data.media_type === 'gif' ? document.createElement('img') : null;
+
+                    mediaElement.src = data.url;
+                    mediaElement.alt = 'Astronomy Media of the Day';
+                    mediaElement.style.maxWidth = '100%';
+                    mediaElement.style.maxHeight = '50vh';
+
+                    if (data.media_type === 'video') {
+                        mediaElement.autoplay = true;
+                        mediaElement.loop = true;
+                    }
+
+                    astronomyPhoto.appendChild(mediaElement);
+                    astronomyTitle.innerText = data.title;
+                } else {
+                    console.error('Unsupported media type for the Astronomy Photo of the Day.');
+                }
+            } catch (error) {
+                console.error('Error fetching the Astronomy Photo of the Day:', error);
+            }
+        }
+
+        fetchPhotoOfTheDay();
+    </script>
+</body>
+
+</html>

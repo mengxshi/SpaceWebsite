@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ISS Information</title>
+    <style>
+        body {
+            background-image: url('iss.jpg');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1,
+        p,
+        p1,
+        #top-left-link,
+        #iss-position {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: skyblue;
+            font-size: 40px;
+            opacity: 0;
+            animation: slideFadeInBottom 2s forwards;
+        }
+
+        p {
+            color: #4169E1;
+            font-size: 30px;
+            opacity: 0;
+            animation: slideFadeInLeft 2s forwards;
+            margin-top: 40px;
+        }
+
+        p1 {
+            color: beige;
+            font-size: 20px;
+            opacity: 0;
+            animation: slideFadeInRight 2s forwards;
+        }
+
+        #top-left-link,
+        #top-left-link:hover {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            opacity: 0;
+            animation: slideFadeInBottom 2s forwards;
+        }
+
+        #top-left-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #iss-map-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            opacity: 0;
+            animation: slideFadeInBottom 2s forwards;
+        }
+
+        iframe {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        @keyframes slideFadeInBottom {
+            0% {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFadeInLeft {
+            0% {
+                transform: translateX(-50%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFadeInRight {
+            0% {
+                transform: translateX(50%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+</head>
+
+<body>
+    <a href="home.html" id="top-left-link">Return to Home Page</a>
+
+    <h1>The International Space Station (ISS)</h1>
+    <p>What is the ISS?</p>
+    <p1>The Internal Space Station Program was an international collaborative effort from NASA, Roscosmos, Canadian Space Agency, JAXA, and the European Space Agency. The main goal of the ISS is to enable long-term exploration of space and provide benefit to people on Earth by conducting research and technological developments. Construction of its main component lasted from 1998 to 2011. Sadly, it will crash into Point Nemo in 2031, so try to see it before that point by checking when it's visible from your night sky</p1>
+    <p>Check When YOU Can See the ISS Over YOUR Sky!</p>
+    <p id="iss-position"></p>
+
+    <div id="iss-map-container">
+        <iframe src='https://spotthestation.nasa.gov/widget/widget2.cfm' width='310' height='450' frameborder='0'></iframe>
+    </div>
+</body>
+
+</html>

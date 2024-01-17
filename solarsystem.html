@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Info - Solar System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        p,
+        .planet-name {
+            color: skyblue;
+            text-align: center;
+            margin-top: 10px;
+            opacity: 0; 
+        }
+
+        p {
+            color: bisque;
+            text-align: center;
+            overflow: hidden;
+            white-space: pre-line;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .planet-name {
+            font-size: 24px;
+        }
+
+        .planet-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px; 
+        }
+
+        .planet-image {
+            width: 80%; 
+            max-width: 310px; 
+            opacity: 0; 
+        }
+
+        #top-left-link,
+        #top-left-link:hover {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease, opacity 1s ease, transform 1s ease; 
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            position: fixed;
+            top: 20px; 
+            left: 20px; 
+            opacity: 0; 
+            transform: translateY(50px); 
+        }
+
+        #top-left-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #top-left-link {
+            animation: fadeInUp 1s forwards;
+            animation-delay: 2.5s; 
+        }
+
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        h1,
+        .planet-name,
+        .planet-image,
+        p {
+            animation: fadeIn 1s forwards;
+        }
+
+        h1 {
+            animation-delay: 0.5s;
+        }
+
+        .planet-name {
+            animation-delay: 1s;
+        }
+
+        .planet-image {
+            animation-delay: 1.5s;
+        }
+
+        p {
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="home.html" id="top-left-link">Return to Home Page</a>
+    <h1>Exploring the Solar System</h1>
+
+    <!-- Mercury -->
+    <div class="planet-info">
+        <h1 class="planet-name">Mercury</h1>
+        <img src="mercury.png" alt="Mercury" class="planet-image">
+        <p>Despite being the closest planet to the Sun, it is not the hottest planet. However, Mercury is the fastest
+            planet, orbiting around the Sun within 88 Earth days. For reference, it takes 365 Earth days for our Earth
+            to orbit the Sun. Mercury is also the smallest planet in our solar system, with a diameter of 4,879 km.
+        </p>
+        <p>Moon count: 0<br>Orbital Period: 88 days<br>Temperature: -290°F (-180°C) to 800°F (430°C)<br>Planet Type:
+            Terrestrial(rocky)</p>
+    </div>
+
+    <!-- Venus -->
+    <div class="planet-info">
+        <h1 class="planet-name">Venus</h1>
+        <img src="venus.png" alt="Venus" class="planet-image">
+        <p>The second planet from the Sun, which is also the hottest planet due to its thick atmosphere. Due to being
+            similar in size and structure, Venus is often called Earth's "twin planet. However, unlike its twin and
+            the rest of the planets, Venus spins backwards. This means that it has a day longer than a year. In the
+            night sky on Earth, it is the brightest planet to be seen.
+        </p>
+        <p>Moon count: 0<br>Orbital Period: 225 days<br>Temperature: 820°F (438°C) to 900°F (482°C)<br>Planet Type:
+            Terrestrial(rocky)</p>
+    </div>
+
+    <!-- Earth -->
+    <div class="planet-info">
+        <h1 class="planet-name">Earth</h1>
+        <img src="earth.png" alt="Earth" class="planet-image">
+        <p>The third planet from the Sun, Earth is where we call home. It is the only planet in the solar system
+            currently known to host life, due to its perfect distance from the Sun (Goldilock Zone), protection from
+            harmful solar radiation by its magnetic field, insulating atmosphere, and holds just the right chemical
+            ingredients for life.
+        </p>
+        <p>Moon count: 1<br>Orbital Period: 365 days<br>Temperature: about 59°F(15°C)<br>Planet Type:
+            Terrestrial(rocky)</p>
+    </div>
+
+    <!-- Mars -->
+    <div class="planet-info">
+        <h1 class="planet-name">Mars</h1>
+        <img src="mars.png" alt="Mars" class="planet-image">
+        <p>The fourth planet of the solar system, it is named after the Roman God of War. It is a fitting name,
+            considering that Mars is dry, rocky, and very cold. Despite that, NASA is sending robotics explorers, such
+            as the Perseverance Rover, to study the red planet to eventually get humans on its surface. Some theories
+            suggest that it once was a habitable planet, then its core cooled. This would lead to the destruction of
+            its magnetic field, exposing it to harmful radiations that would destroy the atmosphere and make the planet
+            a desert.
+        </p>
+        <p>Moon count: 2<br>Orbital Period: 687 days<br>Temperature: -225°F(-153°C) to 70°F (20°C)<br>Planet Type:
+            Terrestrial(rocky)</p>
+    </div>
+
+    <!-- Jupiter -->
+    <div class="planet-info">
+        <h1 class="planet-name">Jupiter</h1>
+        <img src="jupiter.png" alt="Jupiter" class="planet-image">
+        <p>The fifth planet of the solar system. It is known for its iconic Great Spot, which is the largest storm in
+            the Solar System. Jupiter is often called a "failed star" because despite having similar chemical
+            composition of a star (composing of Helium and Hydrogen), it is not big enough to commence energy
+            production to become a star. However, it is the largest planet in the Solar System, therefore also having
+            the strongest gravitational force among all the planets.
+        </p>
+        <p>Moon count: 80-95<br>Orbital Period: 12 years<br>Temperature: -150°F(-100°C) to -260°F(-160°C)<br>Planet
+            Type: Gas Giants</p>
+    </div>
+
+    <!-- Saturn -->
+    <div class="planet-info">
+        <h1 class="planet-name">Saturn</h1>
+        <img src="saturn.png" alt="Saturn" class="planet-image">
+        <p>The sixth planet of the Solar System, holding its iconic ring. The ring is made up of billions of chunks of
+            rocks and ice. Despite only being the second largest planet in the Solar System, it is still 10 to 20 times
+            the mass of Earth. Similar to Jupiter, it is also composed of Helium and Hydrogen.
+        </p>
+        <p>Moon count: 146<br>Orbital Period: 29.4 years<br>Temperature: -288°F(-178°C)<br>Planet Type: Gas Giants</p>
+    </div>
+
+    <!-- Uranus -->
+    <div class="planet-info">
+        <h1 class="planet-name">Uranus</h1>
+        <img src="uranus.png" alt="Uranus" class="planet-image">
+        <p>The seventh planet of the Solar System, also the coldest. It is also the smelliest planet in the solar
+            system, due to it containing a high amount of Hydrogen Sulfide, which is the same molecule that makes
+            rotten eggs. Uranus is well known for being tilted on its side, tilting at almost 98°. It also spins on
+            its side. Despite it being filled with gas, it is not considered a gas giant. Instead, it's an ice giant.
+        </p>
+        <p>Moon count: 27<br>Orbital Period: 84 years<br>Temperature: -320°F(-195°C)<br>Planet Type: Ice Giants</p>
+    </div>
+
+    <!-- Neptune -->
+    <div class="planet-info">
+        <h1 class="planet-name">Neptune</h1>
+        <img src="neptune.png" alt="Neptune" class="planet-image">
+        <p>The last planet in the solar, which is also the furthest planet from the Sun. It is so far away that it
+            takes light 5 hours to travel from the Sun to Neptune. It is blue due to methane in the atmosphere, which
+            absorbs red wavelengths and reflects blue wavelengths. Although it may not seem like it, Neptune has at
+            least 5 rings.
+        </p>
+        <p>Moon count: 14<br>Orbital Period: 165 years<br>Temperature: -353°F(-214°C)<br>Planet Type: Ice Giants</p>
+    </div>
+</body>
+
+</html>
